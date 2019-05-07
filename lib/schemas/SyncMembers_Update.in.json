@@ -1,0 +1,160 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serverName": {
+            "required": true,
+            "type": "string"
+        },
+        "databaseName": {
+            "required": true,
+            "type": "string"
+        },
+        "syncGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "syncMemberName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "ARM resource.",
+                            "properties": {
+                                "id": {
+                                    "description": "Resource ID.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Resource name.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Resource type.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object",
+                            "x-ms-azure-resource": true
+                        }
+                    ],
+                    "description": "ARM proxy resource.",
+                    "properties": {},
+                    "type": "object"
+                }
+            ],
+            "description": "An Azure SQL Database sync member.",
+            "properties": {
+                "properties": {
+                    "description": "Resource properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "databaseName": {
+                            "description": "Database name of the member database in the sync member.",
+                            "type": "string"
+                        },
+                        "databaseType": {
+                            "description": "Database type of the sync member.",
+                            "enum": [
+                                "AzureSqlDatabase",
+                                "SqlServerDatabase"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SyncMemberDbType"
+                            }
+                        },
+                        "password": {
+                            "description": "Password of the member database in the sync member.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "create",
+                                "update"
+                            ]
+                        },
+                        "serverName": {
+                            "description": "Server name of the member database in the sync member",
+                            "type": "string"
+                        },
+                        "sqlServerDatabaseId": {
+                            "description": "SQL Server database id of the sync member.",
+                            "format": "uuid",
+                            "type": "string"
+                        },
+                        "syncAgentId": {
+                            "description": "ARM resource id of the sync agent in the sync member.",
+                            "type": "string"
+                        },
+                        "syncDirection": {
+                            "description": "Sync direction of the sync member.",
+                            "enum": [
+                                "Bidirectional",
+                                "OneWayMemberToHub",
+                                "OneWayHubToMember"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SyncDirection"
+                            }
+                        },
+                        "syncState": {
+                            "description": "Sync state of the sync member.",
+                            "enum": [
+                                "SyncInProgress",
+                                "SyncSucceeded",
+                                "SyncFailed",
+                                "DisabledTombstoneCleanup",
+                                "DisabledBackupRestore",
+                                "SyncSucceededWithWarnings",
+                                "SyncCancelling",
+                                "SyncCancelled",
+                                "UnProvisioned",
+                                "Provisioning",
+                                "Provisioned",
+                                "ProvisionFailed",
+                                "DeProvisioning",
+                                "DeProvisioned",
+                                "DeProvisionFailed",
+                                "Reprovisioning",
+                                "ReprovisionFailed",
+                                "UnReprovisioned"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SyncMemberState"
+                            }
+                        },
+                        "userName": {
+                            "description": "User name of the member database in the sync member.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
